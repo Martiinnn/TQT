@@ -49,28 +49,75 @@ class TeslaCarousel {
     this.addTouchSupport();
   }
   
-  updateCarousel() {
+  updateCarousel(direction = 'next') {
     if (this.isTransitioning) return;
     
     this.isTransitioning = true;
     
-
-    const translateX = -this.currentSlide * 25;
-    this.track.style.transform = `translateX(${translateX}%)`;
+    // Get current active slide
+    const currentActiveSlide = document.querySelector('.car-slide.active');
+    const nextSlide = this.slides[this.currentSlide];
     
-
-    this.slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === this.currentSlide);
-    });
-    
-    this.indicators.forEach((indicator, index) => {
-      indicator.classList.toggle('active', index === this.currentSlide);
-    });
-    
-    // Reset transition flag
-    setTimeout(() => {
-      this.isTransitioning = false;
-    }, 800);
+    // Start acceleration animation on current slide
+    if (currentActiveSlide && currentActiveSlide !== nextSlide) {
+      // Apply direction-specific classes
+      if (direction === 'next') {
+        currentActiveSlide.classList.add('accelerating-left');
+        nextSlide.classList.add('entering-right');
+      } else {
+        currentActiveSlide.classList.add('accelerating-right');
+        nextSlide.classList.add('entering-left');
+      }
+      
+      setTimeout(() => {
+        // Update track position
+        const translateX = -this.currentSlide * 25;
+        this.track.style.transform = `translateX(${translateX}%)`;
+        
+        // Update active states
+        this.slides.forEach((slide, index) => {
+          slide.classList.remove('active', 'accelerating-left', 'accelerating-right', 'entering-left', 'entering-right');
+          if (index === this.currentSlide) {
+            slide.classList.add('active');
+            if (direction === 'next') {
+              slide.classList.add('entering-right');
+            } else {
+              slide.classList.add('entering-left');
+            }
+          }
+        });
+        
+        // Update indicators
+        this.indicators.forEach((indicator, index) => {
+          indicator.classList.toggle('active', index === this.currentSlide);
+        });
+        
+        // Clean up classes after animation
+        setTimeout(() => {
+          this.slides.forEach(slide => {
+            slide.classList.remove('accelerating-left', 'accelerating-right', 'entering-left', 'entering-right');
+          });
+          this.isTransitioning = false;
+        }, 800);
+        
+      }, 400); // Wait for acceleration to complete
+    } else {
+      // First load or same slide
+      const translateX = -this.currentSlide * 25;
+      this.track.style.transform = `translateX(${translateX}%)`;
+      
+      this.slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === this.currentSlide);
+      });
+      
+      this.indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === this.currentSlide);
+      });
+      
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 800);
+    }
   }
   
   nextSlide() {

@@ -5,7 +5,7 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    background: url('https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/tesla-shop-marketing-imagery/hero-carousel/Desktop_2x_2800x1300V2.png') no-repeat center top;
+    background: url(./img/fondo.avif);
     background-size: cover;
     background-attachment: fixed;
     opacity: 0.95;
@@ -22,7 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Navigation Enhancements */
 .navbar {
   position: sticky;
   top: 0;
@@ -47,7 +46,6 @@ body {
   color: #000 !important;
 }
 
-/* Best Sellers Section */
 #best-sellers {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -67,7 +65,6 @@ body {
   pointer-events: auto;
 }
 
-/* Tesla-style Carousel */
 .tesla-carousel {
   position: relative;
   max-width: 1200px;
@@ -117,8 +114,8 @@ body {
 }
 
 .car-image img {
-  max-width: 100%;
-  max-height: 300px;
+  width: 450px;
+  height: 300px;
   object-fit: contain;
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
   transition: transform 0.6s ease;
@@ -127,6 +124,7 @@ body {
 .car-slide.active .car-image img {
   transform: scale(1.05);
 }
+
 
 .car-info {
   flex: 0 0 300px;
@@ -257,6 +255,11 @@ body {
     margin-bottom: 20px;
   }
   
+  .car-image img {
+    width: 300px;
+    height: 200px;
+  }
+  
   .car-info {
     flex: none;
     padding-left: 0;
@@ -285,6 +288,39 @@ body {
 
 
 footer {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
+}
+
+
+.car-slide.accelerating-left .car-image img {
+  transform: translateX(-150%) scale(0.8) rotateY(-15deg);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.car-slide.accelerating-right .car-image img {
+  transform: translateX(150%) scale(0.8) rotateY(15deg);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
+.car-slide.entering-right .car-image img {
+  transform: translateX(150%) scale(0.8) rotateY(15deg);
+  opacity: 0;
+  transition: none;
+}
+
+.car-slide.entering-left .car-image img {
+  transform: translateX(-150%) scale(0.8) rotateY(-15deg);
+  opacity: 0;
+  transition: none;
+}
+
+.car-slide.entering-right.active .car-image img,
+.car-slide.entering-left.active .car-image img {
+  transform: translateX(0) scale(1.05) rotateY(0deg);
+  opacity: 1;
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

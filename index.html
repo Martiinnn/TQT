@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullstack 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="background-blur"></div>
+  <main class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg px-4">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white roboto-slab fs-3 fw-bold" href="#">TQT</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white roboto-slab" href="#home">INICIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white roboto-slab" href="#vehicles">VEHÍCULOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white roboto-slab" href="#contact">CONTACTO</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section id="home" class="hero-section d-flex align-items-center justify-content-center text-center text-white py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h1 class="display-3 roboto-slab fw-bold mb-4">Encuentra tu Auto Perfecto</h1>
+                        <p class="lead mb-4">Descubre nuestra amplia selección de vehículos de calidad premium</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="best-sellers">
+          <div class="container">
+            <div class="text-center mb-5">
+              <h2 class="display-4 fw-light mb-3">Nuestros Vehículos</h2>
+              <p class="text-muted fs-5">Descubre la innovación en cada detalle</p>
+            </div>
+            
+            <div class="tesla-carousel">
+              <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                  <div class="car-slide active">
+                    <div class="car-image">
+                      <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-S-Main-Hero-Desktop-LHD.jpg" alt="Tesla Model S">
+                    </div>
+                    <div class="car-info">
+                      <h3>Model S</h3>
+                      <p>Sedán de lujo eléctrico</p>
+                      <div class="car-specs">
+                        <span>652 km autonomía</span>
+                        <span>322 km/h velocidad máx</span>
+                      </div>
+                      <div class="car-price">Desde $94,990</div>
+                    </div>
+                  </div>
+                  
+                  <div class="car-slide">
+                    <div class="car-image">
+                      <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-3-Main-Hero-Desktop-LHD.jpg" alt="Tesla Model 3">
+                    </div>
+                    <div class="car-info">
+                      <h3>Model 3</h3>
+                      <p>Sedán compacto eléctrico</p>
+                      <div class="car-specs">
+                        <span>568 km autonomía</span>
+                        <span>261 km/h velocidad máx</span>
+                      </div>
+                      <div class="car-price">Desde $38,990</div>
+                    </div>
+                  </div>
+                  
+                  <div class="car-slide">
+                    <div class="car-image">
+                      <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-Main-Hero-Desktop-LHD.jpg" alt="Tesla Model X">
+                    </div>
+                    <div class="car-info">
+                      <h3>Model X</h3>
+                      <p>SUV eléctrico premium</p>
+                      <div class="car-specs">
+                        <span>547 km autonomía</span>
+                        <span>262 km/h velocidad máx</span>
+                      </div>
+                      <div class="car-price">Desde $109,990</div>
+                    </div>
+                  </div>
+                  
+                  <div class="car-slide">
+                    <div class="car-image">
+                      <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-Main-Hero-Desktop-LHD.jpg" alt="Tesla Model Y">
+                    </div>
+                    <div class="car-info">
+                      <h3>Model Y</h3>
+                      <p>SUV compacto eléctrico</p>
+                      <div class="car-specs">
+                        <span>533 km autonomía</span>
+                        <span>250 km/h velocidad máx</span>
+                      </div>
+                      <div class="car-price">Desde $52,990</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="carousel-nav">
+                <button class="nav-btn prev-btn" id="prevBtn">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="nav-btn next-btn" id="nextBtn">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="carousel-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+    <footer class="border-top border-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-white roboto-slab">TQT</h5>
+                    <p class="text-white-50">Tu concesionario de confianza desde 1995</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-white-50 mb-0">&copy; 2025 TQT. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="script.js" ></script>
+</html>

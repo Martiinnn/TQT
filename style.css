@@ -1,0 +1,290 @@
+.background-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: url('https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/tesla-shop-marketing-imagery/hero-carousel/Desktop_2x_2800x1300V2.png') no-repeat center top;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.95;
+}
+
+.hero-section {
+    min-height: 70vh;
+}
+
+body {
+    font-family: 'Roboto Slab', serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Navigation Enhancements */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-brand {
+  color: #111 !important;
+}
+
+.navbar-scrolled .nav-link:hover {
+  color: #000 !important;
+}
+
+/* Best Sellers Section */
+#best-sellers {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+  position: relative;
+  z-index: 10;
+  padding: 80px 0 120px 0;
+  min-height: 70vh;
+}
+
+#best-sellers.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Tesla-style Carousel */
+.tesla-carousel {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-track {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.car-slide {
+  width: 25%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  opacity: 0.7;
+  transition: opacity 0.8s ease;
+}
+
+.car-slide.active {
+  opacity: 1;
+}
+
+.car-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 40px;
+}
+
+.car-image img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+  transition: transform 0.6s ease;
+}
+
+.car-slide.active .car-image img {
+  transform: scale(1.05);
+}
+
+.car-info {
+  flex: 0 0 300px;
+  padding-left: 40px;
+  text-align: left;
+}
+
+.car-info h3 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.car-info p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.car-specs {
+  margin-bottom: 2rem;
+}
+
+.car-specs span {
+  display: block;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.car-price {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+
+/* Navigation Buttons */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-btn svg {
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-btn:hover svg {
+  color: #000;
+}
+
+/* Indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 400px;
+  }
+  
+  .car-slide {
+    flex-direction: column;
+    padding: 40px 30px;
+    text-align: center;
+  }
+  
+  .car-image {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  .car-info {
+    flex: none;
+    padding-left: 0;
+    text-align: center;
+  }
+  
+  .car-info h3 {
+    font-size: 2rem;
+  }
+  
+  .car-price {
+    font-size: 1.5rem;
+  }
+}
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, transparent 100%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+
+footer {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+}

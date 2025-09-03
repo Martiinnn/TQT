@@ -1,0 +1,140 @@
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+  const navbar = document.querySelector('.navbar');
+  const bestSellers = document.getElementById('best-sellers');
+  
+  if (window.scrollY > 80) {
+    navbar.classList.add('navbar-scrolled');
+    bestSellers.classList.add('show');
+  } else {
+    navbar.classList.remove('navbar-scrolled');
+    bestSellers.classList.remove('show');
+  }
+});
+
+class TeslaCarousel {
+  constructor() {
+    this.currentSlide = 0;
+    this.totalSlides = 4;
+    this.autoPlayInterval = null;
+    this.isTransitioning = false;
+    
+    this.track = document.getElementById('carouselTrack');
+    this.prevBtn = document.getElementById('prevBtn');
+    this.nextBtn = document.getElementById('nextBtn');
+    this.indicators = document.querySelectorAll('.indicator');
+    this.slides = document.querySelectorAll('.car-slide');
+    
+    this.init();
+  }
+  
+  init() {
+    this.prevBtn.addEventListener('click', () => this.prevSlide());
+    this.nextBtn.addEventListener('click', () => this.nextSlide());
+    
+
+    this.indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => this.goToSlide(index));
+    });
+    
+
+    this.startAutoPlay();
+    
+
+    const carousel = document.querySelector('.tesla-carousel');
+    carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
+    carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+    
+
+    this.addTouchSupport();
+  }
+  
+  updateCarousel() {
+    if (this.isTransitioning) return;
+    
+    this.isTransitioning = true;
+    
+
+    const translateX = -this.currentSlide * 25;
+    this.track.style.transform = `translateX(${translateX}%)`;
+    
+
+    this.slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === this.currentSlide);
+    });
+    
+    this.indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === this.currentSlide);
+    });
+    
+    // Reset transition flag
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 800);
+  }
+  
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+    this.updateCarousel();
+  }
+  
+  prevSlide() {
+    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+    this.updateCarousel();
+  }
+  
+  goToSlide(index) {
+    if (index !== this.currentSlide && !this.isTransitioning) {
+      this.currentSlide = index;
+      this.updateCarousel();
+    }
+  }
+  
+  startAutoPlay() {
+    this.stopAutoPlay();
+    this.autoPlayInterval = setInterval(() => {
+      this.nextSlide();
+    }, 5000);
+  }
+  
+  stopAutoPlay() {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
+    }
+  }
+  
+  handleSwipe() {
+    const threshold = 50;
+    const diff = startX - endX;
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        this.nextSlide();
+      } else {
+        this.prevSlide();
+      }
+    }
+  }
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Wait for the best-sellers section to be visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Initialize carousel when section becomes visible
+        setTimeout(() => {
+          new TeslaCarousel();
+        }, 500);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+  
+  const bestSellersSection = document.getElementById('best-sellers');
+  if (bestSellersSection) {
+    observer.observe(bestSellersSection);
+  }
+});
